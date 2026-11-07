@@ -56,7 +56,9 @@ REFRESH_DAYS = 3
 # Longest gap the unattended refresh fills by itself; older gaps need the service.
 MAX_AUTO_GAP_DAYS = 30
 # Pause between per-day API calls of a backfill (~2.5 requests/min stays well under the rate limit).
-BACKFILL_PACE_SECONDS = 1.5
+BACKFILL_PACE_SECONDS = 4.0
+# 1.5 s exhausted the shared 60/min budget during a full backfill (2026-11-07) and the
+# regular coordinators went unavailable on 429s; 4 s leaves room for normal polling.
 BACKFILL_MAX_RETRIES = 3
 YESTERDAY_REFRESH_CUTOFF = time(hour=0, minute=20)
 
