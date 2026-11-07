@@ -495,6 +495,18 @@
       },
       "energy_produced_sum_this_year": {
         "name": "Netto teruggeleverd dit jaar"
+      },
+      "electricity_net_cost_today": {
+        "name": "Netto stroomkosten vandaag"
+      },
+      "electricity_net_cost_this_month": {
+        "name": "Netto stroomkosten deze maand"
+      },
+      "electricity_net_cost_this_year": {
+        "name": "Netto stroomkosten dit jaar"
+      },
+      "result_today": {
+        "name": "Powerplay opbrengst vandaag"
       }
     },
     "binary_sensor": {

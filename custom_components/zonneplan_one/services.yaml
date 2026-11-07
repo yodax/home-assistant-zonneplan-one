@@ -26,3 +26,36 @@ fetch_statistics:
       selector:
         text:
 
+
+fetch_cost_statistics:
+  name: Fetch actual cost history from Zonneplan API
+  description: >-
+    Backfill the daily actual electricity cost statistics (delivery/production/net, incl. and excl. tax)
+    and Powerplay earnings (EUR) from a start date until today. Runs in the background (one API call per
+    day, paced) and is resumable: without start_date it continues from the last stored day (first run
+    starts 2025-08-01). Re-importing days is idempotent.
+  fields:
+    start_date:
+      name: Start date
+      description: "First day to (re)import. Accepted formats: YYYYMMDD or YYYY-MM-DD. Omit to resume."
+      required: false
+      example: "2025-08-01"
+      selector:
+        text:
+    endpoint:
+      name: Endpoint
+      description: Which statistics to backfill.
+      required: false
+      default: all
+      selector:
+        select:
+          options:
+            - all
+            - electricity
+            - battery
+    connection_uuid:
+      name: Connection UUID
+      description: Optionally limit to one connection UUID.
+      required: false
+      selector:
+        text:

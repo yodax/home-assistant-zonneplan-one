@@ -56,7 +56,7 @@ from .coordinators.gas_data_coordinator import GasDataUpdateCoordinator
 from .coordinators.gas_prices_data_coordinator import GasPricesDataUpdateCoordinator
 from .coordinators.pv_data_coordinator import PvDataUpdateCoordinator
 from .coordinators.summary_data_coordinator import SummaryDataUpdateCoordinator
-from .services import async_setup_fetch_statistics_service
+from .services import async_setup_fetch_cost_statistics_service, async_setup_fetch_statistics_service
 
 PLATFORMS = [
     Platform.SENSOR,
@@ -86,6 +86,7 @@ async def async_setup(
     )
 
     async_setup_fetch_statistics_service(hass)
+    async_setup_fetch_cost_statistics_service(hass)
 
     return True
 

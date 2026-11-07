@@ -347,6 +347,18 @@
       },
       "energy_produced_sum_this_year": {
         "name": "Net production this year"
+      },
+      "electricity_net_cost_today": {
+        "name": "Electricity net cost today"
+      },
+      "electricity_net_cost_this_month": {
+        "name": "Electricity net cost this month"
+      },
+      "electricity_net_cost_this_year": {
+        "name": "Electricity net cost this year"
+      },
+      "result_today": {
+        "name": "Powerplay earnings today"
       }
     },
     "binary_sensor": {
@@ -474,6 +486,24 @@
         "connection_uuid": {
           "name": "Connection UUID",
           "description": "Optionally limit the refetch to a specific connection UUID. If omitted, all matching connections are updated (see last part of statistics_id: `zonneplan_one:electricity_delivered_xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`)."
+        }
+      }
+    },
+    "fetch_cost_statistics": {
+      "name": "Fetch actual cost history from Zonneplan API",
+      "description": "Backfill the daily actual electricity cost and Powerplay earnings statistics (EUR) from a start date until today. Runs in the background, resumable.",
+      "fields": {
+        "start_date": {
+          "name": "Start date",
+          "description": "First day to (re)import, YYYYMMDD or YYYY-MM-DD. Omit to resume from the last stored day (first run starts 2025-08-01)."
+        },
+        "endpoint": {
+          "name": "Endpoint",
+          "description": "electricity, battery or all (default)."
+        },
+        "connection_uuid": {
+          "name": "Connection UUID",
+          "description": "Optionally limit to one connection."
         }
       }
     }

@@ -1011,3 +1011,11 @@ If you run into issues during setup or when entries do not update anymore please
 4. Disable debug logging again (same button as step 2)
 5. Log will be presented for download
 6. Be sure to remove sensitive data from the log before attaching it to a ticket
+
+## Actual costs and statistics (fork addition)
+
+* Sensors: `Electricity net cost today / this month / this year` (delivery minus feed-in, incl. tax, EUR; attributes hold the delivery/production amounts incl. and excl. tax and kWh) and `Powerplay earnings today`.
+* Daily long-term statistics (EUR, one row per local day at local midnight, running `sum`): `zonneplan_one:electricity_{delivery,production,net}_cost[_excl_tax]_<connection_uuid>` and `zonneplan_one:powerplay_earnings_<battery_contract_uuid>` (uuid with `_` instead of `-`).
+  Today-so-far is written on every update; once a day the last 3 days are re-imported because Zonneplan corrects recent data.
+* Service `zonneplan_one.fetch_cost_statistics` backfills history (default: resume from the last stored day, first run from 2025-08-01; one paced API call per day). Parameters: `start_date`, `endpoint` (`all`/`electricity`/`battery`), `connection_uuid`.
+* Tests: `python -m venv .venv && .venv/bin/pip install homeassistant pytest pytest-asyncio` (needs the Python version Home Assistant requires), then `.venv/bin/python -m pytest`.

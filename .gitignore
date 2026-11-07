@@ -18,3 +18,5 @@ config/*
 !config/configuration.yaml
 
 custom_components/zonneplan_one/tests/
+
+.venv/

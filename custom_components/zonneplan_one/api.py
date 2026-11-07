@@ -70,10 +70,10 @@ class AsyncConfigEntryAuth(ZonneplanApi):
     async def async_get(self, connection_uuid: str, path: str, *, ignore_etag: bool = False) -> dict | None:
         return await self._async_get("connections/" + connection_uuid + path, ignore_etag=ignore_etag)
 
-    async def async_get_battery_chart(self, contract_uuid: str, chart: str, chart_date: date) -> dict | None:
+    async def async_get_battery_chart(self, contract_uuid: str, chart: str, chart_date: date, *, ignore_etag: bool = False) -> dict | None:
         """Get battery chart data for the given contract and date."""
         chart_date_str = chart_date.isoformat()
-        return await self._async_get(f"contracts/{contract_uuid}/home_battery_installation/charts/{chart}?date={chart_date_str}")
+        return await self._async_get(f"contracts/{contract_uuid}/home_battery_installation/charts/{chart}?date={chart_date_str}", ignore_etag=ignore_etag)
 
     async def async_get_battery_control_mode(self, contract_uuid: str, *, ignore_etag: bool = False) -> dict | None:
         """Get battery control mode."""
