@@ -281,7 +281,6 @@ class RecorderStatisticsStore:
     async def baseline_sum(self, statistic_id: str, before: datetime) -> float:
         """Return the stored ``sum`` of the last row strictly before ``before`` (0 if none)."""
         instance = get_instance(self.hass)
-        await instance.async_block_till_done()
         rows = await instance.async_add_executor_job(
             statistics_during_period,
             self.hass,
@@ -300,7 +299,6 @@ class RecorderStatisticsStore:
 
     async def last_day(self, statistic_id: str) -> date | None:
         instance = get_instance(self.hass)
-        await instance.async_block_till_done()
         last = await instance.async_add_executor_job(get_last_statistics, self.hass, 1, statistic_id, True, {"sum"})
         rows = (last or {}).get(statistic_id)
         if not rows:
